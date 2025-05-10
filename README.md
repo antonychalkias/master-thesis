@@ -16,6 +16,9 @@ This project provides a complete workflow for labeling, segmenting, and preparin
   - [6. Import JSON to Label Studio](#6-import-json-to-label-studio)
   - [7. Label Studio Template Format](#7-label-studio-template-format)
 - [📝 Semantic Segmentation Labels](#-semantic-segmentation-labels)
+- [🔄 Dataset Processing](#-dataset-processing)
+  - [1. Combining CSV Datasets](#1-combining-csv-datasets)
+  - [2. Reordering and Renaming Images](#2-reordering-and-renaming-images)
 
 ---
 
@@ -91,6 +94,7 @@ For **semantic segmentation** with polygon labels, use the following configurati
 ```xml
 <View>
   <Image name="image" value="$image" zoom="true"/>
+
   <PolygonLabels name="label" toName="image" strokeWidth="3">
     <Label value="Gemista" background="red"/>
     <Label value="Green Beans" background="green"/>
@@ -110,14 +114,31 @@ For **semantic segmentation** with polygon labels, use the following configurati
     <Label value="Salad Leaves" background="lightgreen"/>
     <Label value="Mushrooms" background="#A0522D"/>
     <Label value="Other" background="gray"/>
+    <Label value="Bread" background="#FFA39E"/>
+    <Label value="Potatos" background="#FFA46E"/>
+    <Label value="Carrots" background="orange"/> 
+    <Label value="Onions" background="#B7EB8F"/>
+    <Label value="Peas" background="#B7E19F"/>
+    <Label value="Snails" background="#A0500D"/>
+    <Label value="Lamb" background="#AA00DD"/>
+    <Label value="Broccoli" background="#90EE90"/>
+    <Label value="Corn" background="yellow"/>
+    
   </PolygonLabels>
 
-  <TextArea name="customLabel" toName="image" perRegion="true"
-            editable="true" required="false" maxSubmissions="1"
-            placeholder="Enter custom label" rows="1"/>
+  <TextArea name="other_description" toName="image"
+            perRegion="true"
+            visibleWhen="choice=Other"
+            required="false"
+            placeholder="Please describe the 'Other' item"
+            rows="3"/>
 
-  <TextArea name="totalWeight" toName="image" editable="true" required="true" maxSubmissions="1"
-            placeholder="Enter total plate weight (e.g., 100g)" rows="1"/>
+  <TextArea name="totalWeight" toName="image"
+            editable="true"
+            required="true"
+            maxSubmissions="1"
+            placeholder="Enter total plate weight (e.g., 100g)"
+            rows="1"/>
 </View>
 ```
 
@@ -127,28 +148,77 @@ For **semantic segmentation** with polygon labels, use the following configurati
 
 These are the predefined food categories for polygon annotation:
 
-- 🫑 **Gemista**
-- 🥬 **Green Beans**
-- 🍔 **Burgers**
-- 🍗 **Chicken**
-- 🍲 **Giouvetsi**
-- 🧀 **Feta**
-- 🥒 **Cucumber**
-- 🍝 **Pasta**
-- 🍖 **Minced Meat**
-- 🧈 **Cheese**
-- 🍚 **Rice**
-- 🥦 **Okra**
-- 🥪 **Toast Cheese**
-- 🥚 **Eggs**
-- 🍛 **Lentils**
-- 🥗 **Salad Leaves**
-- 🍄 **Mushrooms**
-- ❓ **Other** (with optional custom label)
+  - Gemista 🫑
+  - Green Beans 🫘
+  - Burgers 🍔
+  - Chicken 🍗
+  - Giouvetsi 🍲
+  - Feta 🧀
+  - Cucumber 🥒
+  - Pasta 🍝
+  - Minced Meat 🥩
+  - Cheese 🧀
+  - Rice 🍚
+  - Okra 🌿
+  - Toast Cheese 🥪
+  - Eggs 🥚
+  - Lentils 🍛
+  - Salad Leaves 🥗
+  - Mushrooms 🍄
+  - Other ❓
+  - Bread 🍞
+  - Potatos 🥔
+  - Carrots 🥕
+  - Onions 🧅
+  - Peas 🌱
+  - Snails 🐌
+  - Lamb 🐑
+  - Broccoli 🥦
+  - Corn 🌽
+
 
 ---
 
+## 🔄 Dataset Processing
 
-For the actual images contact me
+After labeling your food images, use these scripts to process and prepare your datasets for training machine learning models.
 
+### 1. Combining CSV Datasets
+
+The `combine_csv_datasets.py` script merges data from multiple CSV files into a single comprehensive dataset:
+
+```bash
+cd python_scripts/after_labeling_scripts
+python3 combine_csv_datasets.py
+```
+
+This script:
+- Combines data from `labels_for_ordered_dataset.csv` and `labels_for_dataset_foods.csv`
+- Extracts food labels from polygon annotations in JSON format
+- Processes image names and URLs to maintain consistency
+- Creates a unified dataset with fields for image name, labels, weight, volume, energy, etc.
+- Outputs a combined CSV file at `csvfiles/combined_dataset_labels.csv`
+
+### 2. Reordering and Renaming Images
+
+The `reorder_images_update_csv.py` script renames all images sequentially and updates the CSV references:
+
+```bash
+cd python_scripts
+python3 reorder_images_update_csv.py
+```
+
+This script:
+- Combines images from `dataset_foods` and `ordered_dataset` folders
+- Renames all images sequentially (1.jpg, 2.jpg, etc.)
+- Creates a new directory `ordered_dataset_foods_ready` with the renamed images
+- Updates the CSV file to reference the new image names
+- Preserves original image names in the CSV for reference
+- Creates a new CSV file at `csvfiles/combined_dataset_labels_ready.csv`
+
+---
+
+## 📸 Image Data Access
+
+For the dataset of annotated images contact me.
 

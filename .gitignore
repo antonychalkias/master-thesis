@@ -26,6 +26,16 @@ ordered_dataset/**/*.JPEG
 ordered_dataset/**/*.PNG
 ordered_dataset/**/*.GIF
 
+ordered_dataset_foods_ready/**/*.jpeg
+ordered_dataset_foods_ready/**/*.jpg
+ordered_dataset_foods_ready/**/*.png
+ordered_dataset_foods_ready/**/*.gif
+ordered_dataset_foods_ready/**/*.JPG
+ordered_dataset_foods_ready/**/*.JPEG
+ordered_dataset_foods_ready/**/*.PNG
+ordered_dataset_foods_ready/**/*.GIF
+
+
 # OS generated files
 .DS_Store
 .DS_Store?
