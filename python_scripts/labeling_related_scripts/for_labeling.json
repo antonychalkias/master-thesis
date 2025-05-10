@@ -1,0 +1,881 @@
+[
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_4_png.rf.f0912c7eeceb5852b81ddcf9273c8169.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_15_png.rf.7b38ab485dba0793443bf71ef9ac0412.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_19_png.rf.a35d28ddb65a0593562d4c0eb04c212b.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_23_png.rf.17c2c67902255116886b26dbe123bc68.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/82BA65C0-A6C9-431D-A655-AED7734AF98D_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0127.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FR_01_1_png.rf.f9e64b6d35f6fa18a9763a9f1906aab8.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_28_png.rf.1b29ae227f9e6b9a111c4f02725af344.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/B4FD1554-0EC1-40E9-897E-5AA93670E8BA_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_24_png.rf.60686354ec3dfcfbc4ddeec3fe92efb7.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0131.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_5_png.rf.89874004af3a8711fa54b10514c168db.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0074.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_10_png.rf.ede16fe22e3ab9219f904de878bf75ee.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/6C353C27-BEB1-4789-8199-D03484E0E283_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_13_png.rf.226924db22cdd1d1ba2c886e7b7a4c9f.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_2_png.rf.ab54bc2540a9bfb01592f158189426c3.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C212E2FB-035B-4B23-8D04-6D3C97593412_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/30399EB9-DF4F-419D-9545-B46224DAA30E_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_5_png.rf.0adc909f38ffda8a614737799818ed56.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_5_png.rf.f4ab48e6743b294074df97bb2ab4b352.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/D496C663-97C3-49F5-BEEE-8AD0E2BC7A9E_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9C3CC846-5D65-4FE0-A21E-E326BBD54446.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_9_png.rf.63a8472776b34b0f9a3ef0c12c2350a4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0078.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/5706202B-52A0-414C-861E-A0BED2B0C51F_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/08B185B7-E19F-4145-80A1-CB2B11CA24D3_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/F523C6E6-9361-44B2-A823-C51F9A6FD4AE_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_30_png.rf.6fea9158495cddbc0de12d9a18ff12b3.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_5_png.rf.db0263dc30c353eb3c43293d4119b9dc.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_1_png.rf.6078656408fdbf08aed3797e9a8073d1.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CR_03_1_png.rf.6f120fec08c5b241c4e782384fe7ef8d.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/A8A096A7-267B-4EC8-AEF4-3A0ACB8349D2_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0146.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0150.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/3BDFF12B-46D4-49F9-AD1B-836798DF9018.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C3A9EB2C-1286-42FD-B6A4-C541CE6BC127_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_13_png.rf.91584ebcde18330b0aa7739b7ac23980.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C1B5860F-A40E-4727-909C-F88A51BA1226_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_1_png.rf.68a90f053e414e381e5a1b9fb5b19702.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_24_png.rf.4020b52447e2a8626a3c3249767c9816.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_5_png.rf.f4755505dd3415f2e5320359ac27e703.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_1_png.rf.bc45c42a758257bf10f5139dd3b1c459.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_2_png.rf.40b4dd2de6c53a78f7ee4a119cab44c3.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PS_01_1_png.rf.7218c68b2e3a67c0776bd64c69878baa.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_7_png.rf.00a9484590a784173d3452e500882b01.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/D494E3A4-C69C-4674-9D14-2A79025305D9_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0147.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_7_png.rf.3739ac3d099dedc59f9c59146ce18d2c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/E538F898-EACD-48CC-8920-4537C0E9CE86_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FR_01_1_png.rf.2aaec2eaec4124a3bdc4fa5f790e3cbb.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_29_png.rf.8bf50003a04d87d32d176c28e5b6da7f.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0079.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_2_png.rf.b86815d919c30e83397663abc41e023d.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FED2AC8E-C70D-4AC9-B081-4D6098CD4BDB_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_5_png.rf.439eacea6d87f7ccdd64f154400d817e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/1FBD49FB-DD82-4278-8D5B-5D7D743843AE_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_6_png.rf.f5008599fe700fff19fc0be0772f9aaf.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/F020B9D9-F198-466E-9C22-FD0C73BE9322.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/E6E8885F-0CA2-4BAC-91FA-532A9A733B07_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_18_png.rf.b0b289ef51eceeac05a002e83325ec30.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_3_png.rf.9038045f251d642818864d9f0a3589c4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_16_png.rf.ba26e295c8acc763016b2b53db0c5426.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_4_png.rf.ca63cd48c772b2486e35110a358c1c39.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/44853D44-31B6-47E2-86BA-9F67DE8E7453_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/63832AEE-9EB6-4DCB-A65F-C8E60EF2685E_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/DF710E54-B3B2-4B5A-843B-ED4BAED92445_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0130.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_6_png.rf.a834ea532dbf66728f27513df250bc3f.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0075.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/939F426E-AC79-4DE8-BA7F-383F3584BD12_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0126.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_4_png.rf.d99f01fd5683195f9a93ae3aa2f5e3b0.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PT_01_1_png.rf.fb33c2b7ff20010d9ba744c334ac55b8.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_21_png.rf.caa6d3a7dda6db57497c164e9f4499b8.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0275.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0091.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0117.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_1_png.rf.f420517902ba9ef48543a52706b8f634.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0140.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_4_png.rf.065e5c3112fab5a28be3750caa15e6a9.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_3_png.rf.cb11dd4a889bbb3ee262df4052cbd76f.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_3_png.rf.93c90849eb8bfb7da1ef895bad980141.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_6_png.rf.17851f43b392450b64656daefcb3fd66.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_10_png.rf.e605a592921eacec339c5a4f1f5324df.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PT_01_1_png.rf.2268df0de10e82d26be72a1c1f1c8e3b.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/6DEB720D-CD37-45D1-8EB8-F6A9AF886659_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_7_png.rf.506b04395e38116703fe37c794ef42a6.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_4_png.rf.82c15b7f57f3a0b98b64138102c84754.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0121.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0276.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_4_png.rf.2cc74bf7d38515f17a5920b5f53f65bb.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PT_01_1_png.rf.9a97785fc179f0b4ba75d7ec4c2a4765.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_22_png.rf.779f3aa37fa01b028c0c749dca1e322c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0072.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/77648754-4E0D-4095-A85E-9870076B361D_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_15_png.rf.421ef7508a47fb103902573aaa1daa54.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_10_png.rf.d27bea5502192cae67c94464e4a15b76.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_23_png.rf.c1bdd3148e1dfc24330ff711224533b7.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/F8F08548-37D7-4B36-ABA0-E13CD6DBAEB2_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_7_png.rf.dbc24ab87ae633fc0f9026c6d1e02440.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/D536AD71-7278-40C6-8CA5-4EF53CDC00F7_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_1_png.rf.2fb86c3f89f4fafe409c9fd98381260e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/ED0EADB3-8358-4AE6-9B7C-46D525966DAF_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0277.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9159CC7A-7F32-4483-ACDD-C65C1EE5E149.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_17_png.rf.f555a7f2c78bfddaedc217e6cbe682e2.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/BE2FEFF1-F697-4F86-9015-15FA8306B572_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9D849076-36B8-4F3A-B81D-EAB97FAA984D_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/B7E51FED-0BA8-4EFA-A98F-9759F9926F3F_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9722966F-E71E-4BE2-B0B7-834431CA29D7_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_1_png.rf.d6018429673df5ae02e494693bdb9e68.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/3149BBF8-A781-4756-B11D-AD6B4E1424E8_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/7B576D3D-EE2E-4B6D-9008-7F0259D765B4_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_3_png.rf.766b0409b6bd905536cb0784b91d4da0.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_1_png.rf.ea22dfd4414e84a9b76d611020f1f78a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_4_png.rf.8a40d7952c487d5981be78b5ad2811a9.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_8_png.rf.8b38a11bf0d7030342b2ad7068371dcb.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/8F17D3AE-827B-4361-AB01-EA59582FBE69_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0139.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/256BF741-728B-4BD9-81C0-EFEA5E9ECBA0_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0138.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C83313F7-4576-4A8A-9CB2-759B640A0C55_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_23_png.rf.196bba29de27bfcd852a75dca4a3c15e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/att.wm3MUStfDIk7gBgTOFmB1f12YMK1RA4gClF02H83t1g.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0136.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0073.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/3051B32C-E220-4FBC-A873-AFC2F0E71FF4_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0120.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_7_png.rf.e90f573db18c2c79ccb5616994d00cba.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/BD5940B4-77FD-4B2A-8A92-A8388F6C3586_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/033C467D-6D48-42AD-B696-7902E61218DB_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_30_png.rf.71da2a3b871b675676d4714e80c6704a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_1_png.rf.4c803781a56c2ccce6010f40299e0c52.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_19_png.rf.ba1b8abb9867dfee8cbde301d358b34e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/2AD70D79-73D1-4E3B-BCC2-130427905BDF_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_15_png.rf.ad2364a7930bfcc56519838c4a67ad30.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/07B5DBCB-73B2-4DFD-BD1B-94E434DD3938_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_2_png.rf.7c9859117a37ed2082cb6e2002f2bbf4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/8DCBFBE7-1944-476D-90F0-43A3E587382C_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0141.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C9868504-17C9-4F65-B6BB-B5A52F573E2F_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0116.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_30_png.rf.ec477732073bc36d436aedc50eaacfe8.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_2_png.rf.fed8993adf24961892c8e8489c044c70.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/177F5A96-38E0-40C1-A2B2-9B95181C76CB_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_14_png.rf.cfa0917f53688da0d92a62367988ebc9.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0090.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/165B5BC0-BFB9-4EC5-B145-FEF24A7EC285_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_2_png.rf.a729e8721c5bda04b97b4f3843761f43.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/1100E15F-8560-49FD-A31C-EA5118C1CF55_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/D80A433A-63AC-4062-ADF2-609E0C782772_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_22_png.rf.1b4a282e97120feb064af22904348d62.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/A3375996-0125-4A23-ABF1-A20B015E257B_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_1_png.rf.c0dafb10a03474d05d9ecc32141207f5.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_17_png.rf.4d9b58f8bdbc37a83d4b9746886cff9e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0320.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0142.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_4_png.rf.db65aab9f74ec48051e68ff7845e31b4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0115.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/57661F5C-26EB-4FEC-8368-BF9D280C2C71_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/4DE1BBB2-6833-4647-91F2-6DD4041D7469_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_29_png.rf.4a33ea4eec8ba2f3602a85050c570881.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_3_png.rf.dc25932c9137fcf5cee23fd2301917fa.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_20_png.rf.00dda3e43a34efd6b0af8927f36cc5df.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FR_01_1_png.rf.f337cb8678eb5747cb1dbbdb02a36efe.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/85E2337B-52F6-4D4E-92F7-3B18277384E2.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/F78FA7B5-0D08-4A15-8F24-42EF0511C722_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/AF33D5F4-1DA0-4B16-84D2-BF98D08FBA06_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_27_png.rf.9e40a13a9e27eab3d0e1ddcefc0dfd98.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0080.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_16_png.rf.bef2db6ec534e761c89cdcb134eb9271.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_7_png.rf.9d421b4c79a394ffe4a3c657ca2dc591.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/BFC372A7-CD1B-4761-B84F-B46DAE7DA956_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_28_png.rf.83bbc9ffe654ee757f76137fe4e8c310.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_3_png.rf.010d557ad6c9920b3cb3a5492853bcfe.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_25_png.rf.fd3abcfc740e4085435f5045d95a6d49.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0119.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_3_png.rf.d176602a6bdcd2eeb2a9568ed2e9c5d4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/3A18FCE7-D067-4E6D-BD0B-767DB5BE57FD_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0135.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_6_png.rf.12f603ac6d081bf5a69a2e48e9e0069b.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/A1ABF71A-A8AB-4FAB-97AD-CC8F3A7A5BA6_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_4_png.rf.94852a43fce2e48502218a3cfd7991d7.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0123.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_5_png.rf.a8660e3be47d3843be4dbb2e63e6a349.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_3_png.rf.0cba4593732c166499032335a8b3862b.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C69B317D-AB6D-4413-827B-B397605DED3F_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0285.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_3_png.rf.700eeb2042b69570cda4788895a1622e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0122.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9601D9E5-E1F1-4479-B64D-A7BF1A3F8C8D_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0071.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0134.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/96E31306-0C47-4909-A497-72338D079C77_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_14_png.rf.048c674d68b9312660d1a48988cae7e6.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0118.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_1_png.rf.c2f0d1e9078ac436390221c5c37a5b7c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_5_png.rf.4e2b72a8a094875e476273c6701eb912.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_12_png.rf.b1266411fe70e353d85845f41d2718e6.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/5096FF6C-1378-4F7D-852F-46921F14D592_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/2FAA3FEC-B33F-40F8-9A0F-07ED9715A92A_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_1_png.rf.dcb3dff4411c8e1344891863a7d5165f.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0286.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FA0062FC-83AC-4C57-9F60-4B2EF7F0E03E_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0319.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_6_png.rf.e0e9f6ce0ed41d4825a9bafe3873e754.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_2_png.rf.20df4ed4a448b22e3459f1b0321d82e2.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_17_png.rf.6421dd0fe97add89bd84e46459ef4193.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/1892445F-73E8-4517-A068-7102A8D50D27_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_22_png.rf.584750b1ca7c2055728b7639ef50c9b5.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/B72B7A37-29F4-437D-A349-EF2EFCA02D9C.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_2_png.rf.bd0d579f9f71727070edb851dc3b2737.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_29_png.rf.eba56158863492b52e28506f8a098dcf.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_4_png.rf.e22b2da9e9ac1f80f8a1b61a0cc56c62.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0143.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0318.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_13_png.rf.d73ced5b35b7f4e4d3c6c6b43225ce7d.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/080DF8C7-E833-4225-97D6-B4CCDE4023E2.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/70885EDD-EAD6-436A-BA7C-FDD30AE25980_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/A641BBF6-20FC-45C7-A47B-3AE809CA6844_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0287.JPG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/F19888E7-C05C-4725-BA0E-4C99DCB9D9D9_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/BEC45C36-A49F-404B-A78A-21A9BA4A5B34_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CR_03_1_png.rf.2789b4c67fd9b0e618eaa428044fa992.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_4_png.rf.302352197946f116e069a9f7f61c126c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_1_png.rf.99e38efc2ea9ff216eee7b859333892a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0148.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_16_png.rf.ccaf492ae687db927eb4f6d1fcd25db2.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/556BF7BE-8198-4B01-9FB6-33B05F103D3E_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/90D27634-CDD6-4728-BC78-44019FC75CCA_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FDCE0DFB-09A3-48FC-A3AA-82035AD13858_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CR_03_1_png.rf.7510b4f273d32a67073fd425ea05ab3c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0076.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0133.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0125.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/00ADB43C-17AF-41E0-A52D-FAC1605E12B4_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_25_png.rf.0df76ee1ba90ccea35c42d0b4aa6833c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_14_png.rf.bbc7d63c0f24c1ff3f5d4ab7afc11d20.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CBF7D572-4477-4905-BA7A-D04FA58A94ED_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_28_png.rf.7ea2c7b256bf0d9c30e00217eda79c48.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_11_png.rf.d49caca52c32c39a30a82e51d24d49df.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_11_png.rf.04def78d6cc4b3894f34e1e65df9a354.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_2_png.rf.00bc4cd50edfc643928959976cae3238.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_24_png.rf.a708055f608094f82e5aed6c399e9269.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_27_png.rf.c8f74b6fe3dbdef269eb2e8012ae260a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0144.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C3041FB1-5A6E-4D8E-818C-5273A4174920_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_3_png.rf.03a8f71d6672885e7f6f5eb1172f2489.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/994256AF-BDDF-4734-90C6-6B3390CCE60A_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_25_png.rf.a48beb785df2cc31512d881e5ce8941d.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_2_png.rf.93b89ecfb4e2a3e5e78bb395e1393bfe.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0168.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/278C0982-2259-4ED6-B6BA-97E489A2ADA1_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_4_png.rf.fb9cab7d0f70e304ff51f7539992694e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_19_png.rf.7af6a866b9ae36669b159aeb628d2279.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0128.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/30A2315F-F6FE-435D-8A4D-2010FA33721E.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/45251BF3-5279-4C97-9823-C8372DBB562E.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_02_4_png.rf.0068b65eaf5d374d8db6f4b869ad489e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/245C452A-8904-4DCB-8C1F-C53C7044C992_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PS_01_1_png.rf.6bf1aa4feb2aafdf6576f0726e0462c3.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0169.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/C08C5F19-6AA8-4EFE-9AEF-6782FB6F2121_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_1_png.rf.aa396da0e1bfb08ea3558e2f3adcaad5.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_11_png.rf.899d7f59d1ea49d1ee0de8aab83adc9a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_04_4_png.rf.047cb0eaabb3a8b8163dd48752c12aa5.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0145.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/810A133B-5C92-44A4-9D33-DE374BCC917F_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/PS_01_1_png.rf.e63d6019052d938263edcb22aad0dc1b.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/BC32E387-B9D6-4B9A-ACBD-A35DF06983CA_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/28AB83AA-0CA8-4952-9F2B-9CDD312ED04B_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_03_4_png.rf.54bad7a535f33d1ab32c700b798416c4.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/9CAFC0C6-950C-40F3-A3D7-EA437CBF9677_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_26_png.rf.9b25b464dfe56976a675eba0b5b3e86e.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/D62CD02E-B951-4CB8-9A30-47402298D4B8_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/3466F413-BFD4-4955-834B-03E7145E1181_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/8177548F-1BD6-406C-BFC9-5F1204BEA909_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_2_png.rf.0a8e9b88542e6e2d222ca9add118f03a.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0124.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_27_png.rf.a26830ced7c3bb370a108d8ef1dd4a5c.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0077.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_05_3_png.rf.ef3cba487aafa03c06cd84740567bac1.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0132.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/39CB662F-B097-4A38-B597-2267CBA5A061_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/DDB59BF7-C5A2-4D5F-A210-9EDA0C4F801B_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/FF4DDBB4-89BD-41F9-8BE9-D2D921225FBF_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/2E6816B5-090F-435D-B032-5C28754F97A9_1_105_c.jpeg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_7_png.rf.bf32fbe1502a2c22809bce128d8a5d68.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/IMG_0149.JPEG"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_26_png.rf.bc66c40e2b38adaa776c324dea4b45a5.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/CH_01_26_png.rf.00e6a6caa486ff57295c4bd8c2657fa9.jpg"
+  },
+  {
+    "image": "http://localhost:8000/dataset_foods/487E9CB3-4D03-4FC9-A526-551331504318_1_105_c.jpeg"
+  }
+]
