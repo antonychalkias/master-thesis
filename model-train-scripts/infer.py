@@ -11,7 +11,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import json
-from train_model import MultiTaskNet  # Import the model architecture from train_model.py
+from model import MultiTaskNet  # Import the model architecture from model.py
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Food recognition and weight estimation inference")

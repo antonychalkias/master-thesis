@@ -1,6 +1,8 @@
 # Ignore all image files in dataset folders and images directory
 # Images directory (ignore everything in this folder)
 images/
+# Models directory (contains large model checkpoint files)
+models/
 # Dataset folders
 
 Data-label-Process/dataset_foods/**/*.jpeg

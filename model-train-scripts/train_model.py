@@ -8,6 +8,26 @@ import os
 import numpy as np
 import argparse
 from sklearn.metrics import accuracy_score, mean_absolute_error, f1_score
+import torch.multiprocessing as mp
+from torch.optim.lr_scheduler import StepLR
+import json
+from torch.utils.data import Dataset
+from PIL import Image
+from torchvision import transforms
+import torch
+import os
+from torch.utils.data import DataLoader
+import torch.nn as nn
+import torchvision.models as models
+from torchvision.models import resnet50, ResNet50_Weights
+import torch.optim as optim
+from torch.utils.data import random_split
+import os
+from sklearn.metrics import accuracy_score, mean_absolute_error
+
+
+
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train food recognition and weight estimation model")
@@ -17,6 +37,7 @@ def parse_args():
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
     parser.add_argument("--model_dir", type=str, default=None, help="Directory to save the model")
+    parser.add_argument("--num_workers", type=int, default=0, help="Number of workers for data loading")
     return parser.parse_args()
 
 # Parse command line arguments
@@ -27,10 +48,18 @@ master_thesis_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set default paths if not provided via command line
 if args.csv_path is None:
-    args.csv_path = os.path.join(master_thesis_dir, "csvfiles", "combined_dataset_labels_ready.csv")
+    args.csv_path = os.path.join(master_thesis_dir, "csvfiles", "latest_lab.csv")
+    # Check if file exists, if not try with the small test file
+    if not os.path.exists(args.csv_path):
+        print(f"Warning: CSV file not found at {args.csv_path}")
+        # Try alternative path
+        alternative_csv = os.path.join(master_thesis_dir, "csvfiles", "labels_latest_with_4_rows.csv")
+        if os.path.exists(alternative_csv):
+            print(f"Using alternative CSV file: {alternative_csv}")
+            args.csv_path = alternative_csv
 
 if args.images_dir is None:
-    args.images_dir = os.path.join(master_thesis_dir, "ordered_dataset_foods_ready")
+    args.images_dir = os.path.join(master_thesis_dir, "images")
 
 if args.model_dir is None:
     args.model_dir = os.path.join(master_thesis_dir, "models")
@@ -44,7 +73,7 @@ os.makedirs(args.model_dir, exist_ok=True)
 
 # Load CSV
 try:
-    df = pd.read_csv(args.csv_path)
+    df = pd.read_csv(args.csv_path, sep=';', quotechar='"')
     print(f"Successfully loaded {len(df)} records from {args.csv_path}")
 except Exception as e:
     print(f"Error loading CSV: {e}")
@@ -58,42 +87,112 @@ print(f"Number of classes: {len(label_to_idx)}")
 print(df.head())
 
 
-from torch.utils.data import Dataset
-from PIL import Image
-from torchvision import transforms
-import torch
-import os
 
 class FoodDataset(Dataset):
     def __init__(self, dataframe, image_dir, transform=None):
         self.df = dataframe.reset_index(drop=True)
         self.image_dir = image_dir
         self.transform = transform if transform else transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((256, 256)),
+            transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(15),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                 std=[0.229, 0.224, 0.225])
+                                std=[0.229, 0.224, 0.225])
         ])
+
+        # Cache for found paths to speed up loading
+        self.path_cache = {}
     
     def __len__(self):
         return len(self.df)
     
-    def __getitem__(self, idx):
-        row = self.df.iloc[idx]
-        img_path = os.path.join(self.image_dir, row['image_name'])
-        image = Image.open(img_path).convert('RGB')
+    def _try_load_image(self, path, row):
+        """Helper to attempt loading an image from a path"""
+        try:
+            image = Image.open(path).convert('RGB')
+            image = self.transform(image)
+            return image, torch.tensor(row['label_idx'], dtype=torch.long), torch.tensor(row['weight'], dtype=torch.float32)
+        except Exception:
+            return None
+    
+    def _create_placeholder(self, row):
+        """Create a placeholder black image for missing files"""
+        image = Image.new('RGB', (224, 224), color='black')
         image = self.transform(image)
+        return image, torch.tensor(row['label_idx'], dtype=torch.long), torch.tensor(row['weight'], dtype=torch.float32)
+    
+    def _find_image_path(self, img_name):
+        """Find the correct path for an image, handling different cases and extensions"""
+        # Get base name without extension
+        name_without_ext, _ = os.path.splitext(img_name)
         
-        label_idx = row['label_idx']
-        weight = row['weight']
+        # 1. Try original path first
+        original_path = os.path.join(self.image_dir, img_name)
+        if os.path.exists(original_path):
+            return original_path
+            
+        # 2. Try with common extensions
+        for ext in ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']:
+            test_path = os.path.join(self.image_dir, name_without_ext + ext)
+            if os.path.exists(test_path):
+                return test_path
         
-        return image, torch.tensor(label_idx, dtype=torch.long), torch.tensor(weight, dtype=torch.float32)
+        # 3. Case-insensitive search
+        try:
+            name_lower = name_without_ext.lower()
+            for file in os.listdir(self.image_dir):
+                file_name, _ = os.path.splitext(file)
+                if file_name.lower() == name_lower:
+                    return os.path.join(self.image_dir, file)
+        except Exception as e:
+            print(f"Error during file search: {e}")
+            
+        # Not found
+        return None
+    
+    def __getitem__(self, idx):
+        try:
+            row = self.df.iloc[idx]
+            img_name = row['image_name']
+            
+            # Check cache first
+            if img_name in self.path_cache:
+                cached_path = self.path_cache[img_name]
+                if cached_path == "PLACEHOLDER":
+                    return self._create_placeholder(row)
+                    
+                result = self._try_load_image(cached_path, row)
+                if result is not None:
+                    return result
+                # Path no longer valid, clear from cache
+                del self.path_cache[img_name]
+            
+            # Try to find the image path
+            img_path = self._find_image_path(img_name)
+            
+            if img_path:
+                # Found a path, try to load it
+                result = self._try_load_image(img_path, row)
+                if result is not None:
+                    self.path_cache[img_name] = img_path
+                    return result
+            
+            # If we get here, image wasn't found or couldn't be loaded
+            print(f"Warning: Image {img_name} not found or corrupted, using placeholder")
+            self.path_cache[img_name] = "PLACEHOLDER"
+            return self._create_placeholder(row)
+            
+        except Exception as e:
+            print(f"Unexpected error for index {idx}: {e}")
+            return self._create_placeholder(row)
 
 
-from torch.utils.data import DataLoader
 
 # Set number of workers for data loading
-num_workers = os.cpu_count() // 2  # Use half of available CPU cores
+num_workers = args.num_workers  # Use the value from command line arguments
 print(f"Using {num_workers} workers for data loading")
 
 # Create dataset
@@ -107,15 +206,14 @@ print(f"Dataset size: {len(dataset)}")
 
 
 
-import torch.nn as nn
-import torchvision.models as models
 
 class MultiTaskNet(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
-        self.backbone = models.resnet18(pretrained=True)
+        
+        self.backbone = resnet50(weights=ResNet50_Weights.DEFAULT)
         num_features = self.backbone.fc.in_features
-        self.backbone.fc = nn.Identity()  # remove original classifier
+        self.backbone.fc = nn.Identity()
         
         self.classifier = nn.Linear(num_features, num_classes)  # classification head
         self.regressor = nn.Linear(num_features, 1)             # regression head
@@ -132,20 +230,19 @@ model = MultiTaskNet(num_classes)
 
 
 
-import torch.optim as optim
+
 
 criterion_class = nn.CrossEntropyLoss()
 criterion_weight = nn.MSELoss()
 
 # Use learning rate from command line arguments
 optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=1e-5)  # Added weight decay for regularization
+scheduler = StepLR(optimizer, step_size=10, gamma=0.5)
 print(f"Optimizer: Adam with learning rate {args.lr}, weight decay 1e-5")
 
 
 
-from torch.utils.data import random_split
-import os
-from sklearn.metrics import accuracy_score, mean_absolute_error
+
 
 # Create model save directory
 model_save_dir = os.path.join(master_thesis_dir, "models")
@@ -163,86 +260,120 @@ print(f"Training on {train_size} samples, validating on {val_size} samples")
 print(f"Batch size: {args.batch_size}")
 print(f"Epochs: {args.epochs}")
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# print(f"Using device: {device}")
+# model.to(device)
+# The configuration below is for machines with M1-M4 based chips (MacOS)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+if torch.backends.mps.is_available():
+    device = torch.device("mps")
+else:
+    device = torch.device("cpu")
+
 print(f"Using device: {device}")
-model.to(device)
+model.to(device)  # Move model to the device
 
-num_epochs = args.epochs
-best_val_loss = float('inf')
 
-for epoch in range(num_epochs):
-    # Training phase
-    model.train()
-    running_train_loss = 0.0
-    for images, labels, weights in train_dataloader:
-        images = images.to(device)
-        labels = labels.to(device)
-        weights = weights.to(device)
+# Training variables are set in the __main__ block
 
-        optimizer.zero_grad()
-        
-        outputs_class, outputs_weight = model(images)
-        
-        loss_class = criterion_class(outputs_class, labels)
-        loss_weight = criterion_weight(outputs_weight, weights)
-        
-        total_loss = loss_class + loss_weight  # can add weight factors if needed
-        total_loss.backward()
-        optimizer.step()
-        
-        running_train_loss += total_loss.item()
+# Add this to make the script compatible with multiprocessing
+if __name__ == '__main__':
+    # This is required for multiprocessing on macOS
+    mp.set_start_method('spawn', force=True)
     
-    avg_train_loss = running_train_loss / len(train_dataloader)
-    
-    # Validation phase
-    model.eval()
-    running_val_loss = 0.0
-    all_preds = []
-    all_labels = []
-    all_weight_preds = []
-    all_weight_true = []
-    
-    with torch.no_grad():
-        for images, labels, weights in val_dataloader:
+    num_epochs = args.epochs
+    best_val_loss = float('inf')
+
+    for epoch in range(num_epochs):
+        # Training phase
+        model.train()
+        running_train_loss = 0.0
+        for images, labels, weights in train_dataloader:
             images = images.to(device)
             labels = labels.to(device)
             weights = weights.to(device)
+
+            optimizer.zero_grad()
             
             outputs_class, outputs_weight = model(images)
             
             loss_class = criterion_class(outputs_class, labels)
             loss_weight = criterion_weight(outputs_weight, weights)
             
-            total_loss = loss_class + loss_weight
-            running_val_loss += total_loss.item()
-            
-            _, predicted = torch.max(outputs_class, 1)
-            
-            all_preds.extend(predicted.cpu().numpy())
-            all_labels.extend(labels.cpu().numpy())
-            all_weight_preds.extend(outputs_weight.cpu().numpy())
-            all_weight_true.extend(weights.cpu().numpy())
-    
-    avg_val_loss = running_val_loss / len(val_dataloader)
-    val_accuracy = accuracy_score(all_labels, all_preds)
-    val_mae = mean_absolute_error(all_weight_true, all_weight_preds)
-    
-    print(f"Epoch {epoch+1}/{num_epochs}: Train Loss = {avg_train_loss:.4f}, Val Loss = {avg_val_loss:.4f}, "
-          f"Val Acc = {val_accuracy:.4f}, Weight MAE = {val_mae:.2f}g")
-    
-    # Save the best model
-    if avg_val_loss < best_val_loss:
-        best_val_loss = avg_val_loss
-        model_path = os.path.join(model_save_dir, "best_model.pth")
-        torch.save({
-            'epoch': epoch,
-            'model_state_dict': model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'val_loss': best_val_loss,
-            'val_accuracy': val_accuracy,
-            'val_mae': val_mae,
-            'label_to_idx': label_to_idx
-        }, model_path)
-        print(f"Model saved to {model_path}")
+            total_loss = 0.7 * loss_class + 0.3 * loss_weight
 
-print("Training completed!")
+            total_loss.backward()
+            optimizer.step()
+            
+            running_train_loss += total_loss.item()
+        
+        avg_train_loss = running_train_loss / len(train_dataloader)
+        
+        # Validation phase
+        model.eval()
+        running_val_loss = 0.0
+        all_preds = []
+        all_labels = []
+        all_weight_preds = []
+        all_weight_true = []
+        
+        with torch.no_grad():
+            for images, labels, weights in val_dataloader:
+                images = images.to(device)
+                labels = labels.to(device)
+                weights = weights.to(device)
+                
+                outputs_class, outputs_weight = model(images)
+                
+                loss_class = criterion_class(outputs_class, labels)
+                loss_weight = criterion_weight(outputs_weight, weights)
+                
+                total_loss = loss_class + loss_weight
+                running_val_loss += total_loss.item()
+                
+                _, predicted = torch.max(outputs_class, 1)
+                
+                all_preds.extend(predicted.cpu().numpy())
+                all_labels.extend(labels.cpu().numpy())
+                all_weight_preds.extend(outputs_weight.cpu().numpy())
+                all_weight_true.extend(weights.cpu().numpy())
+        
+        avg_val_loss = running_val_loss / len(val_dataloader)
+        val_accuracy = accuracy_score(all_labels, all_preds)
+        val_mae = mean_absolute_error(all_weight_true, all_weight_preds)
+        
+        print(f"Epoch {epoch+1}/{num_epochs}: Train Loss = {avg_train_loss:.4f}, Val Loss = {avg_val_loss:.4f}, "
+              f"Val Acc = {val_accuracy:.4f}, Weight MAE = {val_mae:.2f}g")
+        # Save epoch metrics to log
+        training_logs["epochs"].append(epoch + 1)
+        training_logs["train_loss"].append(avg_train_loss)
+        training_logs["val_loss"].append(avg_val_loss)
+        training_logs["val_accuracy"].append(val_accuracy)
+        training_logs["weight_mae"].append(val_mae)
+
+        # Save the best model
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
+            model_path = os.path.join(model_save_dir, "best_model.pth")
+            torch.save({
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'val_loss': best_val_loss,
+                'val_accuracy': val_accuracy,
+                'val_mae': val_mae,
+                'label_to_idx': label_to_idx
+            }, model_path)
+            print(f"Model saved to {model_path}")
+            scheduler.step() 
+
+    print("Training completed!")
+
+
+    # Save training log as JSON
+    log_path = os.path.join(args.model_dir, "training_log.json")
+    with open(log_path, "w") as f:
+        json.dump(training_logs, f, indent=4)
+    print(f"Training log saved to {log_path}")

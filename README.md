@@ -233,7 +233,81 @@ For the dataset of annotated images contact me.
 
 ## 📊 Model Architecture
 
-TOBE Determined
+The model uses a multi-task learning approach built on a ResNet50 backbone:
+- **Backbone**: ResNet50 pretrained on ImageNet
+- **Heads**: 
+  - Classification head for food recognition (47 food categories)
+  - Regression head for weight estimation
+
+### Code Structure
+
+The model code is organized into the following modules:
+- `train.py` - Main training script with the training loop
+- `model.py` - Model architecture definition (MultiTaskNet)
+- `data.py` - Dataset implementation and data loading functionality
+- `utils.py` - Utility functions for argument parsing and device selection
+
+---
+
+## 🏃 Running the Model
+
+### Training the Model
+
+To train the model using your dataset of food images:
+
+```bash
+# Navigate to the model-train-scripts directory
+cd /Users/chalkiasantonios/Desktop/master-thesis/model-train-scripts
+
+# Run the training script with default parameters
+python train.py
+
+# Run with custom parameters
+python train.py --epochs 20 --batch_size 16 --lr 0.0001 --num_workers 4
+```
+
+#### Available Parameters:
+- `--csv_path`: Path to the CSV file with annotations (default: "latest_lab.csv")
+- `--images_dir`: Path to the directory with images (default: "../images")
+- `--model_dir`: Directory to save the model (default: "../models")
+- `--epochs`: Number of training epochs (default: 20)
+- `--batch_size`: Batch size for training (default: 16)
+- `--lr`: Learning rate (default: 0.0001)
+- `--num_workers`: Number of workers for data loading (default: 0)
+
+### Model Inference
+
+To use the trained model for inference on new images:
+
+```bash
+# Navigate to the model-train-scripts directory
+cd /Users/chalkiasantonios/Desktop/master-thesis/model-train-scripts
+
+# Run inference on a single image
+python infer.py --model_path ../models/best_model.pth --image_path ../path/to/food_image.jpg
+
+# Process a directory of images
+python infer.py --model_path ../models/best_model.pth --images_dir ../path/to/images/ --output_dir ../results/
+```
+
+#### Inference Parameters:
+- `--model_path`: Path to the trained model (required)
+- `--image_path`: Path to a single food image
+- `--images_dir`: Directory with multiple food images
+- `--output_dir`: Directory to save results (default: "results")
+
+### Troubleshooting Common Issues
+
+1. **Missing packages**: Ensure all required packages are installed:
+   ```bash
+   pip install torch torchvision pandas pillow scikit-learn matplotlib
+   ```
+
+2. **CUDA/MPS issues**: The code automatically detects and uses available acceleration (CUDA for NVIDIA GPUs, MPS for Apple Silicon).
+
+3. **Image loading errors**: The model handles case-sensitive file extensions and will create placeholder images for missing files.
+
+4. **Memory issues**: Reduce batch size if you encounter memory problems.
 
 ---
 
