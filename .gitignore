@@ -1,39 +1,43 @@
-# Ignore all image files in dataset folders
-dataset_foods/**/*.jpeg
-dataset_foods/**/*.jpg
-dataset_foods/**/*.png
-dataset_foods/**/*.gif
-dataset_foods/**/*.JPG
-dataset_foods/**/*.JPEG
-dataset_foods/**/*.PNG
-dataset_foods/**/*.GIF
+# Ignore all image files in dataset folders and images directory
+# Images directory (ignore everything in this folder)
+images/
+# Dataset folders
 
-dataset_foods_unlabeled/**/*.jpeg
-dataset_foods_unlabeled/**/*.jpg
-dataset_foods_unlabeled/**/*.png
-dataset_foods_unlabeled/**/*.gif
-dataset_foods_unlabeled/**/*.JPG
-dataset_foods_unlabeled/**/*.JPEG
-dataset_foods_unlabeled/**/*.PNG
-dataset_foods_unlabeled/**/*.GIF
+Data-label-Process/dataset_foods/**/*.jpeg
+Data-label-Process/dataset_foods/**/*.jpg
+Data-label-Process/dataset_foods/**/*.png
+Data-label-Process/dataset_foods/**/*.gif
+Data-label-Process/dataset_foods/**/*.JPG
+Data-label-Process/dataset_foods/**/*.JPEG
+Data-label-Process/dataset_foods/**/*.PNG
+Data-label-Process/dataset_foods/**/*.GIF
 
-ordered_dataset/**/*.jpeg
-ordered_dataset/**/*.jpg
-ordered_dataset/**/*.png
-ordered_dataset/**/*.gif
-ordered_dataset/**/*.JPG
-ordered_dataset/**/*.JPEG
-ordered_dataset/**/*.PNG
-ordered_dataset/**/*.GIF
+Data-label-Process/dataset_foods_unlabeled/**/*.jpeg
+Data-label-Process/dataset_foods_unlabeled/**/*.jpg
+Data-label-Process/dataset_foods_unlabeled/**/*.png
+Data-label-Process/dataset_foods_unlabeled/**/*.gif
+Data-label-Process/dataset_foods_unlabeled/**/*.JPG
+Data-label-Process/dataset_foods_unlabeled/**/*.JPEG
+Data-label-Process/dataset_foods_unlabeled/**/*.PNG
+Data-label-Process/dataset_foods_unlabeled/**/*.GIF
 
-ordered_dataset_foods_ready/**/*.jpeg
-ordered_dataset_foods_ready/**/*.jpg
-ordered_dataset_foods_ready/**/*.png
-ordered_dataset_foods_ready/**/*.gif
-ordered_dataset_foods_ready/**/*.JPG
-ordered_dataset_foods_ready/**/*.JPEG
-ordered_dataset_foods_ready/**/*.PNG
-ordered_dataset_foods_ready/**/*.GIF
+Data-label-Process/ordered_dataset/**/*.jpeg
+Data-label-Process/ordered_dataset/**/*.jpg
+Data-label-Process/ordered_dataset/**/*.png
+Data-label-Process/ordered_dataset/**/*.gif
+Data-label-Process/ordered_dataset/**/*.JPG
+Data-label-Process/ordered_dataset/**/*.JPEG
+Data-label-Process/ordered_dataset/**/*.PNG
+Data-label-Process/ordered_dataset/**/*.GIF
+
+Data-label-Process/ordered_dataset_foods_ready/**/*.jpeg
+Data-label-Process/ordered_dataset_foods_ready/**/*.jpg
+Data-label-Process/ordered_dataset_foods_ready/**/*.png
+Data-label-Process/ordered_dataset_foods_ready/**/*.gif
+Data-label-Process/ordered_dataset_foods_ready/**/*.JPG
+Data-label-Process/ordered_dataset_foods_ready/**/*.JPEG
+Data-label-Process/ordered_dataset_foods_ready/**/*.PNG
+Data-label-Process/ordered_dataset_foods_ready/**/*.GIF
 
 
 # OS generated files

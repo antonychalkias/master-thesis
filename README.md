@@ -6,6 +6,7 @@ This project provides a complete workflow for labeling, segmenting, and preparin
 
 ## 📚 Table of Contents
 
+### 📋 Part 1: Data Labeling & Processing
 - [🔧 Setup](#-setup)
 - [🚀 Steps to Use](#-steps-to-use)
   - [1. Install Label Studio](#1-install-label-studio)
@@ -19,6 +20,12 @@ This project provides a complete workflow for labeling, segmenting, and preparin
 - [🔄 Dataset Processing](#-dataset-processing)
   - [1. Combining CSV Datasets](#1-combining-csv-datasets)
   - [2. Reordering and Renaming Images](#2-reordering-and-renaming-images)
+
+### 🧠 Part 2: Model Training & Inference
+- [📊 Model Architecture](#-model-architecture)
+- [⚙️ Training Process](#-training-process)
+- [🔍 Evaluation](#-evaluation)
+- [🖼️ Inference](#-inference)
 
 ---
 
@@ -221,4 +228,87 @@ This script:
 ## 📸 Image Data Access
 
 For the dataset of annotated images contact me.
+
+---
+
+## 📊 Model Architecture
+
+TOBE Determined
+
+---
+
+## ⚙️ Training Process
+
+### Environment Setup
+
+```bash
+# Install pandas
+  pip install torch torchvision pandas pillow
+```
+
+### Data Preparation
+
+```bash
+# Prepare the dataset for training
+python prepare_dataset.py --input_csv csvfiles/combined_dataset_labels_ready.csv --images_dir ordered_dataset_foods_ready
+```
+
+### Training
+
+```bash
+# Start the training process
+python train.py --config configs/default_config.yaml --epochs 100 --batch_size 8
+```
+
+### Training Parameters
+
+- **Optimizer**: Adam with learning rate 0.001
+- **Loss Functions**: 
+  - Segmentation: Focal Loss + Dice Loss
+  - Classification: Cross-Entropy Loss
+  - Weight Estimation: Mean Absolute Error
+- **Batch Size**: 8 (default)
+- **Epochs**: 100 (default)
+- **Validation Split**: 20%
+
+---
+
+## 🔍 Evaluation
+
+The model is evaluated on several metrics:
+
+```bash
+# Run evaluation on test set
+python evaluate.py --model_path models/best_model.pth --test_csv csvfiles/test_set.csv
+```
+
+### Performance Metrics
+
+- **Segmentation**: mIoU (mean Intersection over Union) and Dice coefficient
+- **Classification**: Accuracy, Precision, Recall, and F1-score
+- **Weight Estimation**: MAE (Mean Absolute Error) and RMSE (Root Mean Squared Error)
+
+---
+
+## 🖼️ Inference
+
+The trained model can be used for inference on new images:
+
+```bash
+# Run inference on a single image
+python infer.py --model_path models/best_model.pth --image_path path/to/food_image.jpg
+
+# Process a directory of images
+python infer.py --model_path models/best_model.pth --images_dir path/to/images/ --output_dir path/to/results/
+```
+
+### Inference Output
+
+The model outputs:
+- Segmentation mask for each food item
+- Food type classification for each segment
+- Estimated weight for each food item
+- Total caloric content estimation
+
+Sample visualization is saved along with detailed nutritional information in JSON format.
 
