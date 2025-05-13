@@ -483,7 +483,7 @@ if __name__ == '__main__':
         epochs=20,
         batch_size=16,
         lr=1e-4,
-        num_workers=2
+        num_workers=0
     )
 
     

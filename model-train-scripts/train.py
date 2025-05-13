@@ -41,6 +41,8 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
     
     # Metrics tracking
     best_val_loss = float('inf')
+    best_val_accuracy = 0
+    best_val_mae = float('inf')
     training_logs = {
         "epochs": [],
         "train_loss": [],
@@ -122,20 +124,80 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         training_logs["val_accuracy"].append(val_accuracy)
         training_logs["weight_mae"].append(val_mae)
 
-        # Save the best model
-        if avg_val_loss < best_val_loss:
-            best_val_loss = avg_val_loss
-            model_path = os.path.join(model_save_dir, "best_model.pth")
+        # Check for existing model before saving
+        model_path = os.path.join(model_save_dir, "best_model.pth")
+        previous_val_loss = float('inf')
+        previous_val_accuracy = 0
+        previous_val_mae = float('inf')
+        
+        # Check if model exists and load its metrics
+        if os.path.exists(model_path):
+            try:
+                # Add numpy.core.multiarray.scalar to the safe globals list for PyTorch 2.6+ compatibility
+                torch.serialization.add_safe_globals(['numpy.core.multiarray.scalar'])
+                # Use weights_only=False for backward compatibility
+                checkpoint = torch.load(model_path, map_location=torch.device('cpu'), weights_only=False)
+                previous_val_loss = checkpoint.get('val_loss', float('inf'))
+                previous_val_accuracy = checkpoint.get('val_accuracy', 0)
+                previous_val_mae = checkpoint.get('val_mae', float('inf'))
+                
+                print("Found existing model with val_loss={:.4f}, val_accuracy={:.4f}, val_mae={:.2f}g".format(
+                    previous_val_loss, previous_val_accuracy, previous_val_mae))
+            except Exception as e:
+                print("Warning: Could not load existing model metrics: {}".format(e))
+                # Continue with default values if model can't be loaded
+        
+        # Determine if current model is better than best seen so far
+        save_model = False
+        
+        # Update best metrics if improved
+        if val_accuracy > best_val_accuracy:
+            best_val_accuracy = val_accuracy
+            save_model = True
+            print("New best accuracy: {:.4f}".format(val_accuracy))
+        elif val_accuracy >= best_val_accuracy * 0.98:  # Within 2% of best accuracy
+            if avg_val_loss < best_val_loss:
+                best_val_loss = avg_val_loss
+                save_model = True
+                print("Similar accuracy with better loss: {:.4f} (vs {:.4f})".format(avg_val_loss, best_val_loss))
+            elif val_mae < best_val_mae:
+                best_val_mae = val_mae
+                save_model = True
+                print("Similar accuracy with better MAE: {:.2f}g (vs {:.2f}g)".format(val_mae, best_val_mae))
+            
+        # Special handling for first epoch comparison with existing model
+        if epoch == 0 and os.path.exists(model_path):
+            # For first epoch, be more strict when comparing to existing model
+            if val_accuracy < previous_val_accuracy * 0.95:  # More than 5% worse accuracy
+                # Only save if loss or MAE is significantly better
+                if avg_val_loss < previous_val_loss * 0.85 or val_mae < previous_val_mae * 0.85:
+                    print("First epoch model has worse accuracy but significantly better loss or MAE: saving.")
+                else:
+                    save_model = False
+                    print("First epoch model has worse accuracy and no significant improvements: not saving.")
+            elif val_accuracy >= previous_val_accuracy * 0.95 and val_accuracy <= previous_val_accuracy * 1.05:
+                # Similar accuracy - check if other metrics are worse
+                if avg_val_loss > previous_val_loss * 1.1 and val_mae > previous_val_mae * 1.1:
+                    save_model = False
+                    print("First epoch model has similar accuracy but worse loss and MAE: not saving.")
+                else:
+                    print("First epoch model has similar metrics to existing model: saving.")
+            else:
+                # Better accuracy - save unless other metrics are much worse
+                print("First epoch model has better accuracy: saving.")
+            
+        if save_model:
             torch.save({
                 'epoch': epoch,
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
-                'val_loss': best_val_loss,
+                'val_loss': avg_val_loss,
                 'val_accuracy': val_accuracy,
                 'val_mae': val_mae,
                 'label_to_idx': label_to_idx
             }, model_path)
-            print(f"Model saved to {model_path}")
+            print("Model saved to {} (Val Loss: {:.4f}, Val Acc: {:.4f}, Val MAE: {:.2f}g)".format(
+                model_path, avg_val_loss, val_accuracy, val_mae))
         
         scheduler.step()
 
@@ -176,9 +238,18 @@ if __name__ == '__main__':
     )
     
     # Save training log as JSON
+    # Convert any numpy values to Python native types for JSON serialization
+    json_compatible_logs = {
+        "epochs": [int(x) for x in training_logs["epochs"]],
+        "train_loss": [float(x) for x in training_logs["train_loss"]],
+        "val_loss": [float(x) for x in training_logs["val_loss"]],
+        "val_accuracy": [float(x) for x in training_logs["val_accuracy"]],
+        "weight_mae": [float(x) for x in training_logs["weight_mae"]]
+    }
+    
     log_path = os.path.join(args.model_dir, "training_log.json")
     with open(log_path, "w") as f:
-        json.dump(training_logs, f, indent=4)
-    print(f"Training log saved to {log_path}")
+        json.dump(json_compatible_logs, f, indent=4)
+    print("Training log saved to {}".format(log_path))
     
     print("Training completed!")
