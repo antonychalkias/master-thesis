@@ -1,56 +1,29 @@
 # CUDA available: True
 # Using device: cuda
-# Epoch 1/20: Train Loss = 4415.5357, Val Loss = 4954.4272, Val Acc = 0.0000, Weight MAE = 53.34g
-# Epoch 2/20: Train Loss = 5234.1350, Val Loss = 4834.2596, Val Acc = 0.0000, Weight MAE = 53.90g
-# Epoch 3/20: Train Loss = 4317.4858, Val Loss = 4502.6738, Val Acc = 0.0476, Weight MAE = 52.72g
-# Model saved to /kaggle/working/best_model.pth (Val Loss: 4502.6738, Val Acc: 0.0476, Val MAE: 52.72g)
-# Epoch 4/20: Train Loss = 2737.1670, Val Loss = 4065.8627, Val Acc = 0.0000, Weight MAE = 49.04g
-# Epoch 5/20: Train Loss = 2143.6895, Val Loss = 3999.0575, Val Acc = 0.0000, Weight MAE = 48.64g
-# Epoch 6/20: Train Loss = 1839.5466, Val Loss = 4394.9641, Val Acc = 0.0476, Weight MAE = 52.09g
-# Epoch 7/20: Train Loss = 1665.1224, Val Loss = 4268.4416, Val Acc = 0.0476, Weight MAE = 51.22g
-# Epoch 8/20: Train Loss = 1198.9331, Val Loss = 3409.8324, Val Acc = 0.0476, Weight MAE = 44.54g
-# Epoch 9/20: Train Loss = 803.7823, Val Loss = 3610.8154, Val Acc = 0.0476, Weight MAE = 45.62g
-# Epoch 10/20: Train Loss = 967.0954, Val Loss = 3985.5651, Val Acc = 0.0476, Weight MAE = 48.49g
-# Epoch 11/20: Train Loss = 747.9750, Val Loss = 2963.3466, Val Acc = 0.0000, Weight MAE = 41.61g
-# Epoch 12/20: Train Loss = 544.9141, Val Loss = 3001.9075, Val Acc = 0.0476, Weight MAE = 39.07g
-# Epoch 13/20: Train Loss = 631.6217, Val Loss = 3264.1064, Val Acc = 0.0000, Weight MAE = 41.15g
-# Epoch 14/20: Train Loss = 513.0885, Val Loss = 3347.6038, Val Acc = 0.0000, Weight MAE = 42.40g
-# Epoch 15/20: Train Loss = 466.7584, Val Loss = 1329.6108, Val Acc = 0.0238, Weight MAE = 26.40g
-# Epoch 16/20: Train Loss = 496.3193, Val Loss = 2810.5298, Val Acc = 0.0000, Weight MAE = 36.71g
-# Epoch 17/20: Train Loss = 472.0945, Val Loss = 2419.1306, Val Acc = 0.0000, Weight MAE = 32.69g
-# Epoch 18/20: Train Loss = 328.6192, Val Loss = 1480.3718, Val Acc = 0.0000, Weight MAE = 26.59g
-# Epoch 19/20: Train Loss = 296.8098, Val Loss = 939.0473, Val Acc = 0.0000, Weight MAE = 21.27g
-# Epoch 20/20: Train Loss = 259.2639, Val Loss = 1323.9699, Val Acc = 0.0238, Weight MAE = 25.20g
-
-
-
-# train 2
-
-# CUDA available: True
-# Using device: cuda
-# Epoch 1/20: Train Loss = 5609.5728, Val Loss = 5075.0241, Val Acc = 0.0476, Weight MAE = 54.03g
-# Model saved to /kaggle/working/best_model.pth (Val Loss: 5075.0241, Val Acc: 0.0476, Val MAE: 54.03g)
-# Epoch 2/20: Train Loss = 4376.1763, Val Loss = 4777.5939, Val Acc = 0.0476, Weight MAE = 53.71g
-# Epoch 3/20: Train Loss = 3985.1454, Val Loss = 4270.4467, Val Acc = 0.0000, Weight MAE = 51.35g
-# Epoch 4/20: Train Loss = 3348.0203, Val Loss = 4198.5797, Val Acc = 0.0119, Weight MAE = 50.64g
-# Epoch 5/20: Train Loss = 1791.0361, Val Loss = 4186.3738, Val Acc = 0.0000, Weight MAE = 50.52g
-# Epoch 6/20: Train Loss = 1823.0725, Val Loss = 4443.6862, Val Acc = 0.0119, Weight MAE = 52.39g
-# Epoch 7/20: Train Loss = 1514.4834, Val Loss = 4331.4550, Val Acc = 0.0238, Weight MAE = 51.68g
-# Epoch 8/20: Train Loss = 1206.5127, Val Loss = 3591.4526, Val Acc = 0.0000, Weight MAE = 47.41g
-# Epoch 9/20: Train Loss = 797.9028, Val Loss = 4036.6438, Val Acc = 0.0000, Weight MAE = 49.19g
-# Epoch 10/20: Train Loss = 754.4606, Val Loss = 3449.2872, Val Acc = 0.0000, Weight MAE = 46.03g
-# Epoch 11/20: Train Loss = 958.8528, Val Loss = 4174.2041, Val Acc = 0.0476, Weight MAE = 50.77g
-# Epoch 12/20: Train Loss = 366.6819, Val Loss = 2506.6864, Val Acc = 0.0476, Weight MAE = 39.12g
-# Epoch 13/20: Train Loss = 510.7153, Val Loss = 2800.3027, Val Acc = 0.0000, Weight MAE = 41.55g
-# Epoch 14/20: Train Loss = 594.0088, Val Loss = 3282.8131, Val Acc = 0.0000, Weight MAE = 45.04g
-# Epoch 15/20: Train Loss = 400.5843, Val Loss = 2457.5279, Val Acc = 0.0476, Weight MAE = 39.49g
-# Epoch 16/20: Train Loss = 449.9432, Val Loss = 2528.3004, Val Acc = 0.0476, Weight MAE = 39.93g
-# Epoch 17/20: Train Loss = 442.3900, Val Loss = 1627.6942, Val Acc = 0.0000, Weight MAE = 32.73g
-# Epoch 18/20: Train Loss = 450.4227, Val Loss = 2702.2134, Val Acc = 0.0238, Weight MAE = 40.12g
-# Epoch 19/20: Train Loss = 345.1929, Val Loss = 1105.9557, Val Acc = 0.0000, Weight MAE = 27.33g
-# Epoch 20/20: Train Loss = 254.1969, Val Loss = 918.1833, Val Acc = 0.0476, Weight MAE = 24.25g
-
-import os
+# ✅ Loaded existing model: Val Loss=407.8140, Acc=0.0476, MAE=13.52g
+# Epoch 1/20: Train Loss = 41.6175, Val Loss = 334.6963, Val Acc = 0.0000, Weight MAE = 13.61g
+# Epoch 2/20: Train Loss = 26.9231, Val Loss = 876.8430, Val Acc = 0.0476, Weight MAE = 21.99g
+# Epoch 3/20: Train Loss = 23.3252, Val Loss = 707.4212, Val Acc = 0.0000, Weight MAE = 20.32g
+# Epoch 4/20: Train Loss = 21.5043, Val Loss = 327.7729, Val Acc = 0.0476, Weight MAE = 13.87g
+# ✅ Model saved to /kaggle/working/best_model.pth (Val Loss: 327.7729, Val Acc: 0.0476, Val MAE: 13.87g)
+# Epoch 5/20: Train Loss = 16.3721, Val Loss = 338.6069, Val Acc = 0.0238, Weight MAE = 13.85g
+# Epoch 6/20: Train Loss = 26.2118, Val Loss = 899.1150, Val Acc = 0.0476, Weight MAE = 22.05g
+# Epoch 7/20: Train Loss = 20.9935, Val Loss = 232.1964, Val Acc = 0.0357, Weight MAE = 10.80g
+# Epoch 8/20: Train Loss = 19.2937, Val Loss = 302.0142, Val Acc = 0.0238, Weight MAE = 12.08g
+# Epoch 9/20: Train Loss = 14.1364, Val Loss = 736.9378, Val Acc = 0.0476, Weight MAE = 20.03g
+# Epoch 10/20: Train Loss = 13.2701, Val Loss = 478.8965, Val Acc = 0.0000, Weight MAE = 17.53g
+# Epoch 11/20: Train Loss = 6.5095, Val Loss = 256.4491, Val Acc = 0.0476, Weight MAE = 10.16g
+# ✅ Model saved to /kaggle/working/best_model.pth (Val Loss: 256.4491, Val Acc: 0.0476, Val MAE: 10.16g)
+# Epoch 12/20: Train Loss = 17.6178, Val Loss = 256.8908, Val Acc = 0.0238, Weight MAE = 11.28g
+# Epoch 13/20: Train Loss = 8.9454, Val Loss = 152.1129, Val Acc = 0.0476, Weight MAE = 8.32g
+# ✅ Model saved to /kaggle/working/best_model.pth (Val Loss: 152.1129, Val Acc: 0.0476, Val MAE: 8.32g)
+# Epoch 14/20: Train Loss = 6.0025, Val Loss = 345.0528, Val Acc = 0.0238, Weight MAE = 12.61g
+# Epoch 15/20: Train Loss = 7.2237, Val Loss = 208.8174, Val Acc = 0.0476, Weight MAE = 9.94g
+# Epoch 16/20: Train Loss = 11.4063, Val Loss = 172.4646, Val Acc = 0.0476, Weight MAE = 8.73g
+# Epoch 17/20: Train Loss = 6.9202, Val Loss = 394.4450, Val Acc = 0.0476, Weight MAE = 14.17g
+# Epoch 18/20: Train Loss = 8.0366, Val Loss = 298.4124, Val Acc = 0.0476, Weight MAE = 11.95g
+# Epoch 19/20: Train Loss = 3.9690, Val Loss = 172.9001, Val Acc = 0.0476, Weight MAE = 7.93g
+# Epoch 20/20: Train Loss = 2.8427, Val Loss = 173.2470, Val Acc = 0.0476, Weight MAE = 7.76gimport os
 import json
 import torch
 import torch.nn as nn
@@ -162,6 +135,16 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
     }
 
     model_path = os.path.join(model_save_dir, "best_model.pth")
+    if os.path.exists(model_path):
+        try:
+            checkpoint = torch.load(model_path, map_location='cpu', weights_only=False)
+            model.load_state_dict(checkpoint['model_state_dict'])
+            best_val_loss = checkpoint.get('val_loss', float('inf'))
+            best_val_accuracy = checkpoint.get('val_accuracy', 0)
+            best_val_mae = checkpoint.get('val_mae', float('inf'))
+            print(f"✅ Loaded existing model: Val Loss={best_val_loss:.4f}, Acc={best_val_accuracy:.4f}, MAE={best_val_mae:.2f}g")
+        except Exception as e:
+            print(f"Warning: Could not load existing model: {e}")
 
     for epoch in range(num_epochs):
         model.train()
@@ -172,7 +155,7 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
             outputs_class, outputs_weight = model(images)
             loss_class = criterion_class(outputs_class, labels)
             loss_weight = criterion_weight(outputs_weight, weights)
-            total_loss = 0.7 * loss_class + 0.3 * loss_weight
+            total_loss = 0.95 * loss_class + 0.05 * loss_weight
             total_loss.backward()
             optimizer.step()
             running_train_loss += total_loss.item()
@@ -209,8 +192,12 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         training_logs["val_accuracy"].append(val_accuracy)
         training_logs["weight_mae"].append(val_mae)
 
-        if val_accuracy > best_val_accuracy:
+        if val_accuracy > best_val_accuracy or \
+           (val_accuracy >= best_val_accuracy * 0.95 and \
+            (avg_val_loss < best_val_loss * 0.9 or val_mae < best_val_mae * 0.9)):
+            best_val_loss = avg_val_loss
             best_val_accuracy = val_accuracy
+            best_val_mae = val_mae
             torch.save({
                 'epoch': epoch,
                 'model_state_dict': model.state_dict(),
@@ -219,7 +206,7 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
                 'val_accuracy': val_accuracy,
                 'val_mae': val_mae
             }, model_path)
-            print(f"Model saved to {model_path} (Val Loss: {avg_val_loss:.4f}, Val Acc: {val_accuracy:.4f}, Val MAE: {val_mae:.2f}g)")
+            print(f"✅ Model saved to {model_path} (Val Loss: {avg_val_loss:.4f}, Val Acc: {val_accuracy:.4f}, Val MAE: {val_mae:.2f}g)")
 
         scheduler.step()
 

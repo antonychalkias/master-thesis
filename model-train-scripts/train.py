@@ -9,14 +9,18 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.multiprocessing as mp
-from torch.optim.lr_scheduler import StepLR
+from torch.optim.lr_scheduler import StepLR, CosineAnnealingLR, OneCycleLR
 from sklearn.metrics import accuracy_score, mean_absolute_error
+import argparse
+import matplotlib.pyplot as plt
 
 from data import prepare_data
 from model import MultiTaskNet
 from utils import parse_args, setup_paths, get_device
+from lr_finder import LRFinder
+from one_cycle_lr import OneCycleLR as CustomOneCycleLR
 
-def train_model(model, train_dataloader, val_dataloader, device, num_epochs, model_save_dir):
+def train_model(model, train_dataloader, val_dataloader, device, num_epochs, model_save_dir, lr_strategy='one_cycle'):
     """
     Train the model and save the best checkpoint
     
@@ -27,6 +31,7 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         device: Device to use for training
         num_epochs: Number of epochs to train for
         model_save_dir: Directory to save the model
+        lr_strategy: Learning rate strategy ('one_cycle', 'cosine', 'step', or 'find')
     
     Returns:
         training_logs: Dictionary containing training metrics
@@ -35,9 +40,72 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
     criterion_class = nn.CrossEntropyLoss()
     criterion_weight = nn.MSELoss()
     
-    # Optimizer
-    optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=1e-5)
-    scheduler = StepLR(optimizer, step_size=10, gamma=0.5)
+    # Create plot directory if needed
+    plot_dir = os.path.join(model_save_dir, 'plots')
+    os.makedirs(plot_dir, exist_ok=True)
+    
+    # Determine the best learning rate if requested
+    if lr_strategy == 'find':
+        print("Running learning rate finder...")
+        lr_finder = LRFinder(
+            model=model,
+            train_dataloader=train_dataloader,
+            criterion_class=criterion_class,
+            criterion_weight=criterion_weight,
+            device=device,
+            start_lr=1e-7,
+            end_lr=1.0,
+            num_iterations=100,
+            weight_class=0.7
+        )
+        lr_finder.find()
+        plot_path = os.path.join(plot_dir, "lr_finder_results.png")
+        lr_finder.plot(save_path=plot_path)
+        
+        best_lr = lr_finder.best_lr
+        print(f"Learning rate finder complete. Using LR: {best_lr}")
+    else:
+        # Use the provided learning rate
+        best_lr = args.lr
+    
+    # Optimizer with potentially updated learning rate
+    optimizer = optim.Adam(model.parameters(), lr=best_lr, weight_decay=1e-5)
+    
+    # Choose appropriate learning rate scheduler based on strategy
+    steps_per_epoch = len(train_dataloader)
+    
+    if lr_strategy == 'one_cycle':
+        # Built-in One Cycle LR
+        scheduler = OneCycleLR(
+            optimizer=optimizer,
+            max_lr=best_lr * 10,  # Peak LR will be 10x the base LR
+            steps_per_epoch=steps_per_epoch,
+            epochs=num_epochs,
+            pct_start=0.3,  # Spend 30% of iterations in the increasing phase
+            div_factor=25,  # initial_lr = max_lr/25
+            final_div_factor=1e4,  # min_lr = initial_lr/10000
+            anneal_strategy='cos'  # Use cosine annealing
+        )
+        scheduler_step_on_batch = True
+        print(f"Using OneCycleLR scheduler with max LR: {best_lr * 10}")
+    elif lr_strategy == 'cosine':
+        # Cosine annealing
+        scheduler = CosineAnnealingLR(
+            optimizer,
+            T_max=num_epochs,
+            eta_min=best_lr / 100
+        )
+        scheduler_step_on_batch = False
+        print(f"Using CosineAnnealingLR scheduler with initial LR: {best_lr}")
+    else:  # default to 'step'
+        # Step LR - more gradual than the original
+        scheduler = StepLR(
+            optimizer,
+            step_size=5,  # Change every 5 epochs instead of 10
+            gamma=0.75  # Reduce by 25% instead of 50%
+        )
+        scheduler_step_on_batch = False
+        print(f"Using StepLR scheduler with initial LR: {best_lr}, step_size=5, gamma=0.75")
     
     # Metrics tracking
     best_val_loss = float('inf')
@@ -48,11 +116,15 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         "train_loss": [],
         "val_loss": [],
         "val_accuracy": [],
-        "weight_mae": []
+        "weight_mae": [],
+        "learning_rates": []  # Track learning rates across epochs
     }
 
-    print(f"Optimizer: Adam with learning rate {args.lr}, weight decay 1e-5")
+    print(f"Optimizer: Adam with initial learning rate {best_lr}, weight decay 1e-5")
     print(f"Starting training for {num_epochs} epochs...")
+    
+    # Flag for whether to step scheduler per batch or per epoch
+    step_per_batch = (lr_strategy == 'one_cycle')
 
     for epoch in range(num_epochs):
         # Training phase
@@ -76,6 +148,10 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
 
             total_loss.backward()
             optimizer.step()
+            
+            # Step the scheduler if using OneCycleLR
+            if lr_strategy == 'one_cycle':
+                scheduler.step()
             
             running_train_loss += total_loss.item()
         
@@ -114,8 +190,11 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         val_accuracy = accuracy_score(all_labels, all_preds)
         val_mae = mean_absolute_error(all_weight_true, all_weight_preds)
         
-        print(f"Epoch {epoch+1}/{num_epochs}: Train Loss = {avg_train_loss:.4f}, Val Loss = {avg_val_loss:.4f}, "
-              f"Val Acc = {val_accuracy:.4f}, Weight MAE = {val_mae:.2f}g")
+        # Get current learning rate
+        current_lr = optimizer.param_groups[0]['lr']
+        
+        print(f"Epoch {epoch+1}/{num_epochs}: LR = {current_lr:.6f}, Train Loss = {avg_train_loss:.4f}, "
+              f"Val Loss = {avg_val_loss:.4f}, Val Acc = {val_accuracy:.4f}, Weight MAE = {val_mae:.2f}g")
         
         # Save epoch metrics to log
         training_logs["epochs"].append(epoch + 1)
@@ -123,6 +202,7 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         training_logs["val_loss"].append(avg_val_loss)
         training_logs["val_accuracy"].append(val_accuracy)
         training_logs["weight_mae"].append(val_mae)
+        training_logs["learning_rates"].append(current_lr)
 
         # Check for existing model before saving
         model_path = os.path.join(model_save_dir, "best_model.pth")
@@ -207,7 +287,18 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
             print("Model saved to {} (Val Loss: {:.4f}, Val Acc: {:.4f}, Val MAE: {:.2f}g)".format(
                 model_path, avg_val_loss, val_accuracy, val_mae))
         
-        scheduler.step()
+        # Step the scheduler for epoch-based schedulers
+        if lr_strategy != 'one_cycle':
+            scheduler.step()
+    
+    # Plot the learning rate schedule
+    plt.figure(figsize=(10, 4))
+    plt.plot(training_logs["epochs"], training_logs["learning_rates"])
+    plt.title('Learning Rate Schedule')
+    plt.xlabel('Epoch')
+    plt.ylabel('Learning Rate')
+    plt.grid(True)
+    plt.savefig(os.path.join(plot_dir, 'learning_rate_schedule.png'), dpi=300)
 
     return training_logs
 
@@ -216,7 +307,18 @@ if __name__ == '__main__':
     mp.set_start_method('spawn', force=True)
     
     # Parse command-line arguments
-    args = parse_args()
+    parser = argparse.ArgumentParser(description="Train food recognition and weight estimation model")
+    parser.add_argument("--csv_path", type=str, default=None, help="Path to the CSV file with annotations")
+    parser.add_argument("--images_dir", type=str, default=None, help="Path to the directory with images")
+    parser.add_argument("--epochs", type=int, default=20, help="Number of training epochs")
+    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training")
+    parser.add_argument("--lr", type=float, default=5e-5, help="Learning rate")  # Changed default to 5e-5
+    parser.add_argument("--model_dir", type=str, default=None, help="Directory to save the model")
+    parser.add_argument("--num_workers", type=int, default=0, help="Number of workers for data loading")
+    parser.add_argument("--lr_strategy", type=str, default="one_cycle",
+                        choices=["one_cycle", "cosine", "step", "find"],
+                        help="Learning rate strategy to use")
+    args = parser.parse_args()
     args = setup_paths(args)
     
     # Prepare data
@@ -242,7 +344,8 @@ if __name__ == '__main__':
         val_dataloader, 
         device, 
         args.epochs, 
-        args.model_dir
+        args.model_dir,
+        lr_strategy=args.lr_strategy
     )
     
     # Save training log as JSON
@@ -252,7 +355,8 @@ if __name__ == '__main__':
         "train_loss": [float(x) for x in training_logs["train_loss"]],
         "val_loss": [float(x) for x in training_logs["val_loss"]],
         "val_accuracy": [float(x) for x in training_logs["val_accuracy"]],
-        "weight_mae": [float(x) for x in training_logs["weight_mae"]]
+        "weight_mae": [float(x) for x in training_logs["weight_mae"]],
+        "learning_rates": [float(x) for x in training_logs["learning_rates"]]
     }
     
     log_path = os.path.join(args.model_dir, "training_log.json")

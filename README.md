@@ -246,6 +246,10 @@ The model code is organized into the following modules:
 - `model.py` - Model architecture definition (MultiTaskNet)
 - `data.py` - Dataset implementation and data loading functionality
 - `utils.py` - Utility functions for argument parsing and device selection
+- `lr_finder.py` - Learning rate finder implementation
+- `one_cycle_lr.py` - Custom One Cycle Learning Rate scheduler
+- `visualize_training_advanced.py` - Advanced training metrics visualization
+- `compare_lr_strategies.py` - Tool to compare different learning rate strategies
 
 ---
 
@@ -259,11 +263,20 @@ To train the model using your dataset of food images:
 # Navigate to the model-train-scripts directory
 cd /Users/chalkiasantonios/Desktop/master-thesis/model-train-scripts
 
-# Run the training script with default parameters
+# Run the training script with default parameters (One Cycle LR strategy)
 python train.py
 
-# Run with custom parameters
-python train.py --epochs 20 --batch_size 16 --lr 0.0001 --num_workers 4
+# Run with custom parameters and specific learning rate strategy
+python train.py --epochs 30 --batch_size 16 --lr 5e-5 --lr_strategy one_cycle --num_workers 4
+
+# Try the learning rate finder to determine the optimal learning rate
+python train.py --lr_strategy find
+
+# Use cosine annealing learning rate scheduler
+python train.py --lr_strategy cosine
+
+# Use step learning rate scheduler
+python train.py --lr_strategy step
 ```
 
 #### Available Parameters:
@@ -272,7 +285,8 @@ python train.py --epochs 20 --batch_size 16 --lr 0.0001 --num_workers 4
 - `--model_dir`: Directory to save the model (default: "../models")
 - `--epochs`: Number of training epochs (default: 20)
 - `--batch_size`: Batch size for training (default: 16)
-- `--lr`: Learning rate (default: 0.0001)
+- `--lr`: Learning rate (default: 5e-5)
+- `--lr_strategy`: Learning rate strategy (choices: "one_cycle", "cosine", "step", "find", default: "one_cycle")
 - `--num_workers`: Number of workers for data loading (default: 0)
 
 ### Model Inference
@@ -336,14 +350,19 @@ python train.py --config configs/default_config.yaml --epochs 100 --batch_size 8
 
 ### Training Parameters
 
-- **Optimizer**: Adam with learning rate 0.001
+- **Optimizer**: Adam with learning rate 5e-5 (default)
 - **Loss Functions**: 
   - Segmentation: Focal Loss + Dice Loss
   - Classification: Cross-Entropy Loss
   - Weight Estimation: Mean Absolute Error
-- **Batch Size**: 8 (default)
-- **Epochs**: 100 (default)
+- **Batch Size**: 16 (default)
+- **Epochs**: 20 (default)
 - **Validation Split**: 20%
+- **Learning Rate Strategies**:
+  - One Cycle LR (default): Dynamic learning rate that first increases then decreases
+  - Cosine Annealing: Gradual decay using cosine function
+  - Step LR: Gradual step-based decay (step_size=5, gamma=0.75)
+  - Learning Rate Finder: Automatically determine optimal learning rate
 
 ---
 
