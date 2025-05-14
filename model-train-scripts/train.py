@@ -150,41 +150,49 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
         # Determine if current model is better than best seen so far
         save_model = False
         
-        # Update best metrics if improved
-        if val_accuracy > best_val_accuracy:
-            best_val_accuracy = val_accuracy
-            save_model = True
-            print("New best accuracy: {:.4f}".format(val_accuracy))
-        elif val_accuracy >= best_val_accuracy * 0.98:  # Within 2% of best accuracy
-            if avg_val_loss < best_val_loss:
-                best_val_loss = avg_val_loss
+        # First check if there's an existing saved model and compare with it
+        if os.path.exists(model_path):                # Compare current model against the previously saved model (not just this run's best)
+            # Only save if current model is better than the previously saved one
+            if val_accuracy > previous_val_accuracy:
                 save_model = True
-                print("Similar accuracy with better loss: {:.4f} (vs {:.4f})".format(avg_val_loss, best_val_loss))
-            elif val_mae < best_val_mae:
-                best_val_mae = val_mae
-                save_model = True
-                print("Similar accuracy with better MAE: {:.2f}g (vs {:.2f}g)".format(val_mae, best_val_mae))
-            
-        # Special handling for first epoch comparison with existing model
-        if epoch == 0 and os.path.exists(model_path):
-            # For first epoch, be more strict when comparing to existing model
-            if val_accuracy < previous_val_accuracy * 0.95:  # More than 5% worse accuracy
-                # Only save if loss or MAE is significantly better
-                if avg_val_loss < previous_val_loss * 0.85 or val_mae < previous_val_mae * 0.85:
-                    print("First epoch model has worse accuracy but significantly better loss or MAE: saving.")
+                best_val_accuracy = max(best_val_accuracy, val_accuracy)
+                print("Better accuracy than saved model: {:.4f} vs {:.4f}".format(val_accuracy, previous_val_accuracy))
+            elif val_accuracy >= previous_val_accuracy * 0.95:  # Within 5% of saved model's accuracy
+                if avg_val_loss < previous_val_loss * 0.9:
+                    save_model = True
+                    best_val_loss = min(best_val_loss, avg_val_loss)
+                    print("Similar accuracy with significantly better loss: {:.4f} vs {:.4f}".format(avg_val_loss, previous_val_loss))
+                elif val_mae < previous_val_mae * 0.9:
+                    save_model = True
+                    best_val_mae = min(best_val_mae, val_mae)
+                    print("Similar accuracy with significantly better MAE: {:.2f}g vs {:.2f}g".format(val_mae, previous_val_mae))
                 else:
                     save_model = False
-                    print("First epoch model has worse accuracy and no significant improvements: not saving.")
-            elif val_accuracy >= previous_val_accuracy * 0.95 and val_accuracy <= previous_val_accuracy * 1.05:
-                # Similar accuracy - check if other metrics are worse
-                if avg_val_loss > previous_val_loss * 1.1 and val_mae > previous_val_mae * 1.1:
-                    save_model = False
-                    print("First epoch model has similar accuracy but worse loss and MAE: not saving.")
-                else:
-                    print("First epoch model has similar metrics to existing model: saving.")
+                    print("No significant improvements over saved model - not saving")
             else:
-                # Better accuracy - save unless other metrics are much worse
-                print("First epoch model has better accuracy: saving.")
+                save_model = False
+                print("Worse accuracy than saved model ({:.4f} vs {:.4f}) - not saving".format(val_accuracy, previous_val_accuracy))
+        else:
+            # No existing model, compare with best metrics from current training run
+            if val_accuracy > best_val_accuracy:
+                best_val_accuracy = val_accuracy
+                save_model = True
+                print("New best accuracy: {:.4f}".format(val_accuracy))
+            elif val_accuracy >= best_val_accuracy * 0.98:  # Within 2% of best accuracy
+                if avg_val_loss < best_val_loss:
+                    best_val_loss = avg_val_loss
+                    save_model = True
+                    print("Similar accuracy with better loss: {:.4f} (vs {:.4f})".format(avg_val_loss, best_val_loss))
+                elif val_mae < best_val_mae:
+                    best_val_mae = val_mae
+                    save_model = True
+                    print("Similar accuracy with better MAE: {:.2f}g (vs {:.2f}g)".format(val_mae, best_val_mae))
+        
+        # Special handling for first epoch - we no longer need this since we're properly
+        # comparing against the existing saved model already
+        if epoch == 0 and os.path.exists(model_path):
+            print("First epoch complete - saved model metrics: Acc={:.4f}, Loss={:.4f}, MAE={:.2f}g".format(
+                previous_val_accuracy, previous_val_loss, previous_val_mae))
             
         if save_model:
             torch.save({

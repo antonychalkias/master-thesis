@@ -5,6 +5,8 @@ images/
 models/
 # Dataset folders
 
+results/
+
 Data-label-Process/dataset_foods/**/*.jpeg
 Data-label-Process/dataset_foods/**/*.jpg
 Data-label-Process/dataset_foods/**/*.png

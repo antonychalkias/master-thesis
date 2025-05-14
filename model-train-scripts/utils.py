@@ -38,7 +38,7 @@ def setup_paths(args):
     
     # Set default paths if not provided
     if args.csv_path is None:
-        args.csv_path = os.path.join(master_thesis_dir, "csvfiles", "latest_lab.csv")
+        args.csv_path = os.path.join(master_thesis_dir, "csvfiles", "latest.csv")
         # Check if file exists, if not try with the small test file
         if not os.path.exists(args.csv_path):
             print(f"Warning: CSV file not found at {args.csv_path}")

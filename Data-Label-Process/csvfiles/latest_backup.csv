@@ -424,33 +424,33 @@ image_name;source;labels;weight
 48.jpg;dataset_foods;Cucumber,Mushrooms,Chicken,Rice,Salad Leaves;495
 49.jpg;dataset_foods;Rice,Mushrooms,Cucumber,Chicken;577
 1.jpeg;dataset_foods;Bread;26
-577.jpeg;dataset_foods;Feta;82
+577.jpg;dataset_foods;Feta;82
 50.jpg;dataset_foods;Rice,Salad Leaves,Chicken;282
 51.jpg;dataset_foods;Eggs,Mushrooms,Salad Leaves,Rice,Chicken;440
 2.jpeg;dataset_foods;Eggs;63
-578.jpeg;dataset_foods;Rice;233
-579.jpeg;dataset_foods;Potatos,Green Beans,Carrots;205
+578.JPEG;dataset_foods;Rice;233
+579.JPEG;dataset_foods;Potatos,Green Beans,Carrots;205
 3.jpeg;dataset_foods;Bread;30
 52.jpg;dataset_foods;Rice,Mushrooms,Chicken,Cucumber;369
 4.jpeg;dataset_foods;Burgers;200
 5.jpeg;dataset_foods;Bread;26
 6.jpeg;dataset_foods;Peas,Potatos,Onions,Carrots;521
 53.jpg;dataset_foods;Rice,Chicken,Salad Leaves;350
-580.jpeg;dataset_foods;Feta;81
+580.JPEG;dataset_foods;Feta;81
 7.jpeg;dataset_foods;Feta;82
 8.jpeg;dataset_foods;Peas,Potatos;171
 9.jpeg;dataset_foods;Burgers;200
 10.jpeg;dataset_foods;Pasta;551
-581.jpeg;dataset_foods;Gemista,Carrots;123
-582.jpeg;dataset_foods;Giouvetsi,Cheese;365
+581.JPEG;dataset_foods;Gemista,Carrots;123
+582.JPEG;dataset_foods;Giouvetsi,Cheese;365
 11.jpeg;dataset_foods;Snails,Rice;401
 12.jpeg;dataset_foods;Chicken;202
 13.jpeg;dataset_foods;Pasta;375
 14.jpeg;dataset_foods;Pasta;417
-583.jpeg;dataset_foods;Gemista,Carrots;123
+583.JPEG;dataset_foods;Gemista,Carrots;123
 15.jpeg;dataset_foods;Bread;30
 54.jpg;dataset_foods;Rice,Carrots;282
-584.jpeg;dataset_foods;Feta;86
+584.JPEG;dataset_foods;Feta;86
 16.jpeg;dataset_foods;Feta;55
 17.jpeg;dataset_foods;Feta;28
 18.jpeg;dataset_foods;Potatos,Lamb;600
@@ -459,17 +459,17 @@ image_name;source;labels;weight
 20.jpeg;dataset_foods;Peas,Potatos,Carrots;206
 21.jpeg;dataset_foods;Pasta;554
 22.jpeg;dataset_foods;Eggs;57
-585.jpeg;dataset_foods;Rice;233
-586.jpeg;dataset_foods;Feta;86
+585.JPEG;dataset_foods;Rice;233
+586.JPEG;dataset_foods;Feta;86
 23.jpeg;dataset_foods;Feta;86
-587.jpeg;dataset_foods;Feta;79
+587.JPEG;dataset_foods;Feta;79
 56.jpg;dataset_foods;Okra,Potatos;324
-588.jpeg;dataset_foods;Broccoli;282
-589.jpeg;dataset_foods;Potatos,Peas;215
+588.JPEG;dataset_foods;Broccoli;282
+589.JPEG;dataset_foods;Potatos,Peas;130
 24.jpeg;dataset_foods;Okra,Potatos;324
-590.jpg;dataset_foods;Peas,Carrots;202
+590.JPEG;dataset_foods;Peas,Potatos,Carrots;206
 57.jpg;dataset_foods;Okra,Potatos;426
-591.jpeg;dataset_foods;Green Beans;202
+591.JPEG;dataset_foods;Green Beans;215
 25.jpeg;dataset_foods;Cheese,Eggs;116
 26.jpeg;dataset_foods;Eggs;57
 27.jpeg;dataset_foods;Gemista;223
@@ -481,23 +481,23 @@ image_name;source;labels;weight
 32.jpeg;dataset_foods;Peas,Potatos;206
 33.jpeg;dataset_foods;Peas;18
 34.jpeg;dataset_foods;Feta;86
-60.jpg;dataset_foods;Pasta;559
-61.jpg;dataset_foods;Pasta;420
-592.jpeg;dataset_foods;Burgers;200
+60.JPG;dataset_foods;Pasta;559
+61.JPG;dataset_foods;Pasta;420
+592.JPEG;dataset_foods;Burgers;200
 35.jpeg;dataset_foods;Feta;69
 36.jpeg;dataset_foods;Other;415
-593.jpeg;dataset_foods;Broccoli;283
+593.JPEG;dataset_foods;Broccoli;283
 37.jpeg;dataset_foods;Carrots;99
 59.jpg;dataset_foods;Pasta;370
 38.jpeg;dataset_foods;Rice;233
-62.jpg;dataset_foods;Green Beans;202
+62.JPG;dataset_foods;Green Beans;202
 39.jpeg;dataset_foods;Rice;233
-63.jpg;dataset_foods;Potatos,Burgers;461
+63.JPG;dataset_foods;Potatos,Burgers;461
 40.jpeg;dataset_foods;Other;200
 41.jpeg;dataset_foods;Gemista;332
 42.jpeg;dataset_foods;Rice;207
 43.jpeg;dataset_foods;Pasta;554
 44.jpeg;dataset_foods;Giouvetsi;369
-594.jpeg;dataset_foods;Chicken;202
-595.jpeg;dataset_foods;Gemista;333
+594.JPEG;dataset_foods;Chicken;202
+595.JPEG;dataset_foods;Gemista;333
 45.jpeg;dataset_foods;Feta;82
