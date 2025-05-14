@@ -5,7 +5,7 @@ images/
 models/
 # Dataset folders
 
-results/
+TRAIN_RESULTS/best_model.pth
 
 Data-label-Process/dataset_foods/**/*.jpeg
 Data-label-Process/dataset_foods/**/*.jpg

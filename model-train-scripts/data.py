@@ -156,7 +156,7 @@ def prepare_data(csv_path, images_dir, batch_size=16, num_workers=0):
         batch_size=batch_size, 
         shuffle=True, 
         num_workers=num_workers, 
-        pin_memory=True
+        pin_memory=False
     )
     
     val_dataloader = DataLoader(
@@ -164,7 +164,7 @@ def prepare_data(csv_path, images_dir, batch_size=16, num_workers=0):
         batch_size=batch_size, 
         shuffle=False, 
         num_workers=num_workers, 
-        pin_memory=True
+        pin_memory=False
     )
 
     print(f"Training on {train_size} samples, validating on {val_size} samples")

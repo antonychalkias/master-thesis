@@ -20,10 +20,10 @@ python train.py --lr_strategy one_cycle --epochs 30 --batch_size 16 --lr 5e-5
 **Usage**:
 ```bash
 # Infer on a single image
-python infer.py --model_path ../models/my_model/best_model.pth --image_path ../images/120.jpg
+python infer.py --model_path ../../models/my_model/best_model.pth --image_path ../../images/120.jpg
 
 # Infer on a directory of images
-python infer.py --model_path ../models/my_model/best_model.pth --images_dir ../images/ --output_dir ../results/
+python infer.py --model_path ../../models/my_model/best_model.pth --images_dir ../../images/ --output_dir ../../results/
 ```
 
 ## Learning Rate Tuning Scripts
@@ -82,7 +82,7 @@ python compare_lr_strategies.py --epochs 10 --batch_size 8 --lr 5e-5 --strategie
 | Task | Script to Run |
 |------|--------------|
 | Train a model | `python train.py` |
-| Run inference | `python infer.py` |
+| Run inference | `cd model-train-scripts/infering && python infer.py` |
 | Find optimal learning rate | `python train.py --lr_strategy find` |
 | Visualize training results | `python visualize_training_advanced.py` |
 | Compare learning rate strategies | `python compare_lr_strategies.py` |
@@ -93,14 +93,31 @@ Note: The following commands will create the necessary directories if they don't
 
 ```bash
 # 1. Find the optimal learning rate
+cd model-train-scripts
 python train.py --lr_strategy find --model_dir ../models/lr_finder_test
 
 # 2. Train with the suggested learning rate using One Cycle LR
 python train.py --lr 5e-5 --lr_strategy one_cycle --model_dir ../models/my_training_run
 
-# 3. Visualize the training results
-python visualize_training_advanced.py --log_path ../models/my_training_run/training_log.json --output_dir ../models/my_training_run/plots
+# 3. Train with One Cycle LR and save to TRAIN_RESULTS
+python train.py --csv_path ../csvfiles/latest.csv --images_dir ../images --model_dir ../TRAIN_RESULTS --epochs 20 --batch_size 16 --lr 5e-5 --lr_strategy one_cycle
 
-# 4. Run inference on new images
-python infer.py --model_path ../models/my_training_run/best_model.pth --images_dir ../images --output_dir ../results
+# 4. Visualize the training results
+cd create_plots
+python visualize_training_advanced.py --log_path ../../TRAIN_RESULTS/training_log_2.json --output_dir ../../TRAIN_RESULTS/plots
+
+# 5. Run inference on new images
+cd ../infering
+# If model.py symlink doesn't exist already:
+# ln -s ../model.py model.py  # Create symlink to model.py (only needed once)
+python infer.py --model_path ../../TRAIN_RESULTS/best_model.pth --images_dir ../../images --output_dir ../../results
+
+# 6. Run inference on subset of images (10 random images)
+mkdir -p ../../sample_10_images
+find ../../images -name "*.jpg" | sort -R | head -10 | xargs -I {} cp {} ../../sample_10_images/
+python infer.py --model_path ../../TRAIN_RESULTS/best_model.pth --images_dir ../../sample_10_images --output_dir ../../results_10_images
+
+# 7. Visualize specific training results (if you want to visualize a different log file)
+cd ../create_plots
+python visualize_training_advanced.py --log_path ../../TRAIN_RESULTS/training_log_2.json --output_dir ../../TRAIN_RESULTS/plots
 ```
