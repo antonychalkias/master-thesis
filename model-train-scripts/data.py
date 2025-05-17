@@ -141,14 +141,30 @@ def prepare_data(csv_path, images_dir, batch_size=16, num_workers=0):
     print(f"Number of classes: {len(label_to_idx)}")
     print(df.head())
 
-    # Create dataset
-    dataset = FoodDataset(df, images_dir)
-    print(f"Dataset size: {len(dataset)} images")
+    # Define transforms
+    train_transform = transforms.Compose([
+        transforms.Resize((256, 256)),
+        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomRotation(15),
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    val_transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
 
-    # Split data into train and validation
+    # Create dataset with transforms
+    dataset = FoodDataset(df, images_dir)
     train_size = int(0.8 * len(dataset))
     val_size = len(dataset) - train_size
-    train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
+    train_indices = list(range(train_size))
+    val_indices = list(range(train_size, train_size + val_size))
+    train_dataset = torch.utils.data.Subset(FoodDataset(df, images_dir, transform=train_transform), train_indices)
+    val_dataset = torch.utils.data.Subset(FoodDataset(df, images_dir, transform=val_transform), val_indices)
 
     # Create dataloaders
     train_dataloader = DataLoader(

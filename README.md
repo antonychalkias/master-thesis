@@ -341,6 +341,14 @@ python infer.py --model_path ../models/best_model.pth --images_dir ../path/to/im
 python prepare_dataset.py --input_csv csvfiles/combined_dataset_labels_ready.csv --images_dir ordered_dataset_foods_ready
 ```
 
+### Data Augmentation & Normalization
+
+During training, the model automatically applies data augmentation and normalization using torchvision transforms:
+- **Training images**: Random resized crop, horizontal flip, rotation, color jitter, normalization
+- **Validation images**: Resize and normalization only
+
+This improves generalization and helps prevent overfitting. You can adjust these transforms in `data.py` if needed.
+
 ### Training
 
 ```bash
