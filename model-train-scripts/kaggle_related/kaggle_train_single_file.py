@@ -201,7 +201,11 @@ class MultiTaskNet(nn.Module):
 
         # Add multitask heads
         self.classifier = nn.Linear(num_features, num_classes)
-        self.weight_regressor = nn.Linear(num_features, 1)
+        self.weight_regressor = nn.Sequential(
+            nn.Linear(num_features, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1)
+        )
 
     def forward(self, x):
         # Extract features from the backbone
@@ -669,7 +673,7 @@ def _validate_epoch(model, val_dataloader, class_criterion, regression_criterion
             # Calculate losses
             class_loss = class_criterion(label_preds, labels)
             reg_loss = regression_criterion(weight_preds.squeeze(), weights)
-            loss = class_loss + reg_loss
+            loss = class_loss + 0.01 * reg_loss
             
             # Update validation loss
             val_loss += loss.item()
@@ -1136,7 +1140,7 @@ if __name__ == '__main__':
                            help="Path to the CSV file with annotations")
         parser.add_argument("--images_dir", type=str, default=f"{DATA_PATH}/image_set_2", 
                            help="Path to the directory with images")
-        parser.add_argument("--epochs", type=int, default=50, 
+        parser.add_argument("--epochs", type=int, default=100, 
                            help="Number of training epochs")
         parser.add_argument("--batch_size", type=int, default=16, 
                            help="Batch size for training")
@@ -1149,7 +1153,7 @@ if __name__ == '__main__':
         parser.add_argument("--lr_strategy", type=str, default="one_cycle",
                             choices=["one_cycle", "cosine", "step"],
                             help="Learning rate strategy to use")
-        parser.add_argument("--early_stopping", type=int, default=10,
+        parser.add_argument("--early_stopping", type=int, default=60,
                             help="Number of epochs to wait for improvement before early stopping (0 to disable)")
         parser.add_argument("--reduce_lr", type=int, default=5,
                             help="Number of epochs to wait for improvement before reducing learning rate (0 to disable)")
