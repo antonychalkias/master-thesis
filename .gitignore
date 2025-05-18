@@ -8,7 +8,7 @@ models/
 image_set_2
 
 
-TRAIN_RESULTS/best_model.pth
+TRAIN_RESULTS/
 
 Data-label-Process/dataset_foods/**/*.jpeg
 Data-label-Process/dataset_foods/**/*.jpg

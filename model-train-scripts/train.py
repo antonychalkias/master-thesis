@@ -144,7 +144,7 @@ def train_model(model, train_dataloader, val_dataloader, device, num_epochs, mod
             loss_weight = criterion_weight(outputs_weight, weights)
             
             # Weighted loss - emphasizes classification a bit more than regression
-            total_loss = 0.7 * loss_class + 0.3 * loss_weight
+            total_loss = 0.9 * loss_class + 0.1 * loss_weight
 
             total_loss.backward()
             optimizer.step()
